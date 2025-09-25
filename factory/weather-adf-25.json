@@ -1,0 +1,9 @@
+{
+	"name": "weather-adf-25",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "587586a0-7c8a-464a-add8-2bd624f1cbb5",
+		"tenantId": "ce62fa98-a703-4b34-ac28-1473d28d842d"
+	}
+}

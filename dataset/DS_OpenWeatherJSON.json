@@ -1,0 +1,19 @@
+{
+	"name": "DS_OpenWeatherJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_OpenWeatherAPI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "data/2.5/weather?q=Pune&appid=b40827493f4ed57d5216077db5bf7ee0&units=metric"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

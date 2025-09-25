@@ -1,0 +1,77 @@
+{
+	"name": "WeatherCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BlobStorageLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "aug_sep_weather_cleaned.csv",
+				"container": "weather-csv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "obs_time_utc_formatted",
+				"type": "String"
+			},
+			{
+				"name": "city",
+				"type": "String"
+			},
+			{
+				"name": "lat",
+				"type": "String"
+			},
+			{
+				"name": "lon",
+				"type": "String"
+			},
+			{
+				"name": "temp_c",
+				"type": "String"
+			},
+			{
+				"name": "feels_like_c",
+				"type": "String"
+			},
+			{
+				"name": "humidity_pct",
+				"type": "String"
+			},
+			{
+				"name": "pressure_hpa",
+				"type": "String"
+			},
+			{
+				"name": "wind_speed_ms",
+				"type": "String"
+			},
+			{
+				"name": "wind_deg",
+				"type": "String"
+			},
+			{
+				"name": "clouds_pct",
+				"type": "String"
+			},
+			{
+				"name": "weather_main",
+				"type": "String"
+			},
+			{
+				"name": "weather_desc",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
