@@ -1,0 +1,204 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['coord']['lon']"
+								},
+								"sink": {
+									"name": "lon",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "$['coord']['lat']"
+								},
+								"sink": {
+									"name": "lat",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "$['weather'][0]['main']"
+								},
+								"sink": {
+									"name": "weather_main",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['weather'][0]['description']"
+								},
+								"sink": {
+									"name": "weather_desc",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['main']['temp']"
+								},
+								"sink": {
+									"name": "temp_c",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "$['main']['feels_like']"
+								},
+								"sink": {
+									"name": "feels_like_c",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "$['main']['pressure']"
+								},
+								"sink": {
+									"name": "pressure_hpa",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "$['main']['humidity']"
+								},
+								"sink": {
+									"name": "humidity_pct",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "$['visibility']"
+								},
+								"sink": {
+									"name": "visibility_m",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['wind']['speed']"
+								},
+								"sink": {
+									"name": "wind_speed_ms",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "$['wind']['deg']"
+								},
+								"sink": {
+									"name": "wind_deg",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['clouds']['all']"
+								},
+								"sink": {
+									"name": "clouds_pct",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['dt']"
+								},
+								"sink": {
+									"name": "obs_time_unix",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "$['sys']['sunrise']"
+								},
+								"sink": {
+									"name": "sunrise_unix",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "$['sys']['sunset']"
+								},
+								"sink": {
+									"name": "sunset_unix",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "$['name']"
+								},
+								"sink": {
+									"name": "city",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "",
+						"mapComplexValuesToString": false
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_OpenWeatherJSON",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_SQL_WeatherObservations",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-09-04T09:59:47Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
