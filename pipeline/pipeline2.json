@@ -1,0 +1,208 @@
+{
+	"name": "pipeline2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "obs_time_utc_formatted",
+									"type": "String"
+								},
+								"sink": {
+									"name": "obs_time_utc",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "lat",
+									"type": "String"
+								},
+								"sink": {
+									"name": "lat",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "lon",
+									"type": "String"
+								},
+								"sink": {
+									"name": "lon",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "city",
+									"type": "String"
+								},
+								"sink": {
+									"name": "city",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "temp_c",
+									"type": "String"
+								},
+								"sink": {
+									"name": "temp_c",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "feels_like_c",
+									"type": "String"
+								},
+								"sink": {
+									"name": "feels_like_c",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "humidity_pct",
+									"type": "String"
+								},
+								"sink": {
+									"name": "humidity_pct",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "pressure_hpa",
+									"type": "String"
+								},
+								"sink": {
+									"name": "pressure_hpa",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "wind_speed_ms",
+									"type": "String"
+								},
+								"sink": {
+									"name": "wind_speed_ms",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "wind_deg",
+									"type": "String"
+								},
+								"sink": {
+									"name": "wind_deg",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "clouds_pct",
+									"type": "String"
+								},
+								"sink": {
+									"name": "clouds_pct",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "weather_main",
+									"type": "String"
+								},
+								"sink": {
+									"name": "weather_main",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "weather_desc",
+									"type": "String"
+								},
+								"sink": {
+									"name": "weather_desc",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": false,
+							"treatBooleanAsNumber": false,
+							"dateTimeFormat": "yyyy-MM-ddTHH:mm:ss.fffffff"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "WeatherCSV",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "WeatherSQL",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-09-08T08:40:21Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
