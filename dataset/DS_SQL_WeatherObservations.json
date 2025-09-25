@@ -1,0 +1,107 @@
+{
+	"name": "DS_SQL_WeatherObservations",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQLDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "obs_time_utc",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "city",
+				"type": "nvarchar"
+			},
+			{
+				"name": "lat",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 6
+			},
+			{
+				"name": "lon",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 6
+			},
+			{
+				"name": "temp_c",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "feels_like_c",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "humidity_pct",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "pressure_hpa",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "wind_speed_ms",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "wind_deg",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "clouds_pct",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "rain_1h_mm",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "snow_1h_mm",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "visibility_m",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "sunrise_utc",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "sunset_utc",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "weather_main",
+				"type": "nvarchar"
+			},
+			{
+				"name": "weather_desc",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "weather_observations"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
